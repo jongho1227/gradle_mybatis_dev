@@ -12,9 +12,12 @@
 	
 	<!-- 패키지 경로를 정해두면, mapper에서 타입지정을 할때 클래스 이름만 쓰면 됨. -->
 	<typeAliases>
-		
+		<package name="kr.or.yi.gradle_mybatis_dev.dto"/>
 	</typeAliases>
 	
+	<typeHandlers>
+		<package name="kr.or.yi.gradle_mybatis_dev.typehandlers"/>
+	</typeHandlers>
 	
 	<environments default="development">
 		<environment id="development">
@@ -33,7 +36,7 @@
 	</environments>
 	<!-- 매퍼 파일 경로 -->
 	<mappers>
-		
+		<package name="kr.or.yi.gradle_mybatis_dev.dao"/>
 	</mappers>
 	
 </configuration>
