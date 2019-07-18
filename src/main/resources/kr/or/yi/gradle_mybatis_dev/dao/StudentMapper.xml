@@ -14,9 +14,7 @@
 		</where>
 	</sql>
 	
-	<sql id="updateSql">
-		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob} where stud_id=#{studId}
-	</sql>
+	
 	
 	<sql id="deleteSql">
 		delete from students where stud_id=#{studId}
@@ -51,13 +49,19 @@
 		insert into students(name, email, phone, dob) values(#{name},#{email},#{phone},#{dob})
 	</insert>
 	
-	<update id="updateStudent" parameterType="Student">
-		<include refid="updateSql"></include>
-	</update>
-	
 	<delete id="deleteStudent" parameterType="Student">
 		<include refid="deleteSql"></include>
 	</delete>
+	
+	<update id="updateStudent" parameterType="Student">
+		update students
+		SET NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, DOB=#{dob}
+		WHERE STUD_ID=#{studId};	
+	</update>
+	
+	<select id="selectStudentMapByAll" resultType="map">
+		<include refid="selectSql"/>
+	</select>
 </mapper>
 
 

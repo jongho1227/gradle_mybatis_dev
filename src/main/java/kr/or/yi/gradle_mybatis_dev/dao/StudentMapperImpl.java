@@ -1,6 +1,7 @@
 package kr.or.yi.gradle_mybatis_dev.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -44,6 +45,15 @@ public class StudentMapperImpl implements StudentMapper {
 			return res;
 		}
 	}
+	
+	@Override
+	public int deleteStudent(Student student) {
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession()){
+			int res = sqlSession.insert(namespace+".deleteStudent", student);
+			sqlSession.commit();
+			return res;
+		}
+	}
 	@Override
 	public int updateStudent(Student student) {
 		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession()){
@@ -53,12 +63,11 @@ public class StudentMapperImpl implements StudentMapper {
 		}
 	}
 	@Override
-	public int deleteStudent(Student student) {
+	public List<Map<String, Object>> selectStudentMapByAll() {
 		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession()){
-			int res = sqlSession.insert(namespace+".deleteStudent", student);
-			sqlSession.commit();
-			return res;
+			return sqlSession.selectList(namespace+".selectStudentMapByAll");
 		}
 	}
+	
 
 }

@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -78,24 +80,26 @@ public class StudentMapperImplTest extends AbstractTest {
 //		log.debug(res+"");
 //		Assert.assertEquals(1, res);
 //	}
+	
 	@Test
 	public void test05UpdateStudent() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		Student student = new Student(4, "임종호1", "www.naver.com", new PhoneNumber("010-1111-1111"), new Date());
+		Student student = new Student(1, "종", "yoiyo", new PhoneNumber("010-0101-0000"), new Date());
+		
 		int res = stdDao.updateStudent(student);
-		log.debug(student.toString());
+		
 		Assert.assertEquals(1, res);
 	}
 	@Test
 	public void test06DeleteStudent() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Student student = new Student(4);
-		Student student2 = new Student(3);
+		Student student = new Student(3);
+		Student student1 = new Student(4);
 		int res = stdDao.deleteStudent(student);
+		int res1 = stdDao.deleteStudent(student1);
 		Assert.assertEquals(1, res);
-		int res2 = stdDao.deleteStudent(student2);
-		Assert.assertEquals(1, res2);
+		Assert.assertEquals(1, res1);
 	}
 	
 	@Test
@@ -106,7 +110,21 @@ public class StudentMapperImplTest extends AbstractTest {
 		log.debug(list.toString());
 		Assert.assertNotNull(list);
 	}
-	
+	@Test
+	public void test08SelectStudentMapByAll() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+				
+		List<Map<String, Object>> list = stdDao.selectStudentMapByAll();
+		
+		Assert.assertNotNull(list);
+		
+		for(Map<String, Object> e : list) {
+			for(Entry<String, Object> ee : e.entrySet()) {
+				log.debug(String.format("%s -> %s", ee.getKey(),ee.getValue()));
+			}
+			
+		}
+	}
 	
 	
 	
