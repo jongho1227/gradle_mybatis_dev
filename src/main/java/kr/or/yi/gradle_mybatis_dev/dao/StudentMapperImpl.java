@@ -68,6 +68,12 @@ public class StudentMapperImpl implements StudentMapper {
 			return sqlSession.selectList(namespace+".selectStudentMapByAll");
 		}
 	}
+	@Override
+	public Student selectStudentByResultMapExtends(Student student) {
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(namespace+".selectStudentByResultMapExtends", student);
+		}
+	}
 	
 
 }

@@ -62,6 +62,25 @@
 	<select id="selectStudentMapByAll" resultType="map">
 		<include refid="selectSql"/>
 	</select>
+	
+	<resultMap type="Student" id="resultStudent">
+		<id column="stud_id" property="studId"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="phone" property="phone"/>
+		<result column="dob" property="dob"/>
+	</resultMap>
+	
+	<resultMap type="Student" id="resultExtStudent" extends="resultStudent">
+		<association property="address" resultMap="kr.or.yi.gradle_mybatis_dev.dao.AddressMapper.resultAddress"></association>
+	</resultMap>
+	
+	
+	<select id="selectStudentByResultMapExtends" parameterType="Student" resultMap="resultExtStudent">
+		select stud_id, name, email, phone, dob, a.addr_id, street, city, state, zip, country
+		  from students s left join addresses a on s.addr_id = a.addr_id
+		  <include refid="whereStmt"></include>
+	</select>
 </mapper>
 
 

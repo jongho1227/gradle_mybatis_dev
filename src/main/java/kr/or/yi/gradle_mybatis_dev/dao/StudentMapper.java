@@ -13,6 +13,6 @@ public interface StudentMapper {
 	int insertStudentAutoInc(Student student);
 	int updateStudent(Student student);
 	int deleteStudent(Student student);
-	
+	Student selectStudentByResultMapExtends(Student student);
 	List<Map<String, Object>> selectStudentMapByAll();
 }

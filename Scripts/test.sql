@@ -12,3 +12,5 @@ select stud_id, name, email, dob, phone,
 
 
 desc students;
+select stud_id, name, email, phone, a.addr_id, street, city, state, zip, country
+from students s left join addresses a on s.addr_id = a.addr_id;

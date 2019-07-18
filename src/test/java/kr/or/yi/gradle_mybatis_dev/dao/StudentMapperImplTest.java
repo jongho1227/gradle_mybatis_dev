@@ -125,7 +125,16 @@ public class StudentMapperImplTest extends AbstractTest {
 			
 		}
 	}
-	
+	@Test
+	public void test09SelectStudentByResultMapExtends() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Student std = new Student();
+		std.setStudId(1);
+		Student searchStudent = stdDao.selectStudentByResultMapExtends(std);
+		Assert.assertNotNull(searchStudent);
+		
+		log.debug(searchStudent.toString());
+	}
 	
 	
 }
