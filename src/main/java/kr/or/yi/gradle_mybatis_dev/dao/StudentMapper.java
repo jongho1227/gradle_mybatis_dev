@@ -9,8 +9,11 @@ public interface StudentMapper {
 	Student selectStudentByNo(Student student);//typehandler
 	Student selectStudentByNoWithResultMap(Student student);//resultmap
 	List<Student> selectStudentByAll();
+	
 	int insertStudent(Student student);
 	int insertStudentAutoInc(Student student);
+	int insertStudentEnum(Student student);
+	
 	int updateStudent(Student student);
 	int deleteStudent(Student student);
 	Student selectStudentByResultMapExtends(Student student);

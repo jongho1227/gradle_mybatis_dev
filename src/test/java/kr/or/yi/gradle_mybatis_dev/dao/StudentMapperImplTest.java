@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import kr.or.yi.gradle_mybatis_dev.AbstractTest;
+import kr.or.yi.gradle_mybatis_dev.dto.Gender;
 import kr.or.yi.gradle_mybatis_dev.dto.PhoneNumber;
 import kr.or.yi.gradle_mybatis_dev.dto.Student;
 
@@ -58,13 +59,24 @@ public class StudentMapperImplTest extends AbstractTest {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(2019, 7, 17);
 		Student student = new Student(3, "홍길동", "lee@naver.com", new PhoneNumber("010", "4415", "5014"), newDate.getTime());
-		Student student1 = new Student(4, "홍길동", "lee@naver.com", new PhoneNumber("010", "4415", "5014"), newDate.getTime());
-		int res = stdDao.insertStudent(student);
-		int res1 = stdDao.insertStudent(student1);
 		
+		int res = stdDao.insertStudent(student);
 		log.debug(student.toString());
-		log.debug(student1.toString());
 		Assert.assertEquals(1, res);
+	
+	}
+	@Test
+	public void test04InsertStudentEunm() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(2019, 7, 17);
+		
+		Student student1 = new Student(4, "이강인", "lee@naver.com", new PhoneNumber("010", "4415", "5014"), newDate.getTime(), Gender.MALE);
+		int res1 = stdDao.insertStudentEnum(student1);
+		
+	
+		log.debug(student1.toString());
+	
 		Assert.assertEquals(1, res1);
 	}
 	
@@ -91,19 +103,10 @@ public class StudentMapperImplTest extends AbstractTest {
 		
 		Assert.assertEquals(1, res);
 	}
-	@Test
-	public void test06DeleteStudent() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Student student = new Student(3);
-		Student student1 = new Student(4);
-		int res = stdDao.deleteStudent(student);
-		int res1 = stdDao.deleteStudent(student1);
-		Assert.assertEquals(1, res);
-		Assert.assertEquals(1, res1);
-	}
+	
 	
 	@Test
-	public void test07SelectStudentByAll() {
+	public void test06SelectStudentByAll() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 				
 		List<Student> list = stdDao.selectStudentByAll();
@@ -111,7 +114,7 @@ public class StudentMapperImplTest extends AbstractTest {
 		Assert.assertNotNull(list);
 	}
 	@Test
-	public void test08SelectStudentMapByAll() {
+	public void test07SelectStudentMapByAll() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 				
 		List<Map<String, Object>> list = stdDao.selectStudentMapByAll();
@@ -126,7 +129,7 @@ public class StudentMapperImplTest extends AbstractTest {
 		}
 	}
 	@Test
-	public void test09SelectStudentByResultMapExtends() {
+	public void test08SelectStudentByResultMapExtends() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Student std = new Student();
 		std.setStudId(1);
@@ -134,6 +137,17 @@ public class StudentMapperImplTest extends AbstractTest {
 		Assert.assertNotNull(searchStudent);
 		
 		log.debug(searchStudent.toString());
+	}
+	
+	@Test
+	public void test09DeleteStudent() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Student student = new Student(3);
+		Student student1 = new Student(4);
+		int res = stdDao.deleteStudent(student);
+		int res1 = stdDao.deleteStudent(student1);
+		Assert.assertEquals(1, res);
+		Assert.assertEquals(1, res1);
 	}
 	
 	

@@ -9,6 +9,7 @@ public class Student {
 	private PhoneNumber phone;
 	private Date dob;
 	private Address address;
+	private Gender gender;
 	
 	
 
@@ -33,6 +34,18 @@ public class Student {
 		this.email = email;
 		this.phone = phone;
 		this.dob = dob;
+	}
+	
+	
+	
+
+	public Student(int studId, String name, String email, PhoneNumber phone, Date dob, Gender gender) {
+		this.studId = studId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.dob = dob;
+		this.gender = gender;
 	}
 
 	public int getStudId() {
@@ -83,12 +96,24 @@ public class Student {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+	
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
 	@Override
 	public String toString() {
-		return String.format("Student [studId=%s, name=%s, email=%s, phone=%s, dob=%s, address=%s]", studId, name,
-				email, phone, dob, address);
+		return String.format("Student [studId=%s, name=%s, email=%s, phone=%s, dob=%s, address=%s, gender=%s]", studId,
+				name, email, phone, dob, address, gender);
 	}
+
+	
 
 	
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.yi.gradle_mybatis_dev.dao.StudentMapper">
 	<sql id="selectSql">
-		select stud_id, name, email, dob, phone 
+		select stud_id, name, email, dob, phone, gender 
 		  from students
 	</sql>
 	
@@ -14,8 +14,6 @@
 		</where>
 	</sql>
 	
-	
-	
 	<sql id="deleteSql">
 		delete from students where stud_id=#{studId}
 	</sql>
@@ -25,8 +23,8 @@
 		<include refid="whereStmt"/>
 	</select>
 	
-	<resultMap type="Student" id="stdResult">
-		<id column="stud_id" property="studId"/>
+	<resultMap type="Student" id="stdResult" extends="resultStudent">
+		
 		<result column="f" property="phone.countryCode"/>
 		<result column="m" property="phone.stateCode"/>
 		<result column="l" property="phone.number"/> 
@@ -49,6 +47,11 @@
 		insert into students(name, email, phone, dob) values(#{name},#{email},#{phone},#{dob})
 	</insert>
 	
+	<insert id="insertStudentEnum" parameterType="Student">
+		insert into students(stud_id, name, email, phone, dob, gender) values(#{studId},#{name},#{email},#{phone},#{dob},#{gender})
+	</insert>
+	
+	
 	<delete id="deleteStudent" parameterType="Student">
 		<include refid="deleteSql"></include>
 	</delete>
@@ -69,6 +72,7 @@
 		<result column="email" property="email"/>
 		<result column="phone" property="phone"/>
 		<result column="dob" property="dob"/>
+		<result column="gender" property="gender"/>
 	</resultMap>
 	
 	<resultMap type="Student" id="resultExtStudent" extends="resultStudent">
