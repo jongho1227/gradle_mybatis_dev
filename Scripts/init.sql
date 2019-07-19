@@ -56,7 +56,16 @@ CREATE TABLE mybatis_dev.COURSE_ENROLLMENT(
   CONSTRAINT FK_ENROLLMENT_STUD FOREIGN KEY (STUD_ID) REFERENCES mybatis_dev.STUDENTS (STUD_ID),
   CONSTRAINT FK_ENROLLMENT_COURSE FOREIGN KEY (COURSE_ID) REFERENCES mybatis_dev.COURSES (COURSE_ID)
 );
--- °èÁ¤°ú ±ÇÇÑºÎ¿©
+
+
+create table mybatis_dev.user_pics(
+	id integer auto_increment primary key, 
+	name varcharacter(50) not null, 
+	pic longblob, 
+	bio longtext
+	);
+
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÑºÎ¿ï¿½
 grant all privileges 
 on mybatis_dev.* 
 to 'user_mybatis_dev'@'localhost' 

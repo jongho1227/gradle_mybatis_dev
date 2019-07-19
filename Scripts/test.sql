@@ -5,6 +5,7 @@ select * from course_enrollment;
 select * from courses;
 select * from students;
 select * from tutors;
+select * from user_pics;
 
 select stud_id, name, email, dob, phone,
 		substring(phone, 1, 3) as f,substring(phone, 5, 3) as m, substring(phone, 9, 4) as l	
@@ -20,4 +21,10 @@ from tutors t left join courses c on t.tutor_id = c.tutor_id
 where t.tutor_id = 1;
 
 alter table students add gender tinyint unsigned;
+
+show tables;
+
+desc user_pics;
+
+
 
